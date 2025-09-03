@@ -32,10 +32,12 @@
             style: "Cream ale"
          }
       ]
-    
-      const carregarTable = (cs, tableId = "cervejasTable", tableHead = ["Nome", "Álcool", "Style", "IBU"]) => {
+      const tableHeads = ["Nome", "Álcool", "Style", "IBU"]
+      const atributosObjeto = ["name", "alcohol", "style", "ibu"]
+      
+      const carregarTable = (cs, tableId = "cervejasTable", tableHead = tableHeads, atributos = atributosObjeto) => {
          const div = document.getElementById(tableId)
-         const itensHtml = cs.map( item => linhaEmTabela([item.name, item.alcohol, item.style, item.ibu]))
+         const itensHtml = cs.map( item => linhaEmTabela(atributos.map( atributo => item[atributo] || '')))
          tableHead = tableHead.map( item => `<th>${item}</th>`)
          const conteudo = `<tr>
                                 ${tableHead.join('')}
